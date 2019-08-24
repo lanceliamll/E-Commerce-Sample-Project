@@ -14,7 +14,7 @@ class NavigationBar extends Component {
     }
   };
 
-  render() {
+  render(props) {
     const adminLinks = (
       <Fragment>
         <li class="nav-item">
@@ -32,7 +32,7 @@ class NavigationBar extends Component {
         </li>
 
         {/* If the user is admin */}
-        {this.props.auth.user !== null && this.props.auth.user.isAdmin
+        {props.auth.user !== null && props.auth.user.isAdmin
           ? adminLinks
           : null}
 
@@ -78,7 +78,8 @@ class NavigationBar extends Component {
           </button>
           <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-              {this.props.auth.isAuthenticated ? authLinks : guestLinks}
+              {/* Render Links based on the auth */}
+              {props.auth.isAuthenticated ? authLinks : guestLinks}
             </ul>
             <span class="navbar-text" />
           </div>

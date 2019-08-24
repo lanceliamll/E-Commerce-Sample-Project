@@ -35,9 +35,9 @@ class Signin extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  render() {
+  render(props, state) {
     //Redirect user to the Home component if isAuth = true
-    if (this.props.auth.isAuthenticated) {
+    if (props.auth.isAuthenticated) {
       return <Redirect to="/home" />;
     }
     return (
@@ -54,7 +54,7 @@ class Signin extends Component {
             type="password"
             onInput={this.handleChange}
             name="password"
-            value={this.state.password}
+            value={state.password}
             placeholder="Enter Password"
           />
           <FormButton onClick={this.handleSigninClick}>Sign in</FormButton>
