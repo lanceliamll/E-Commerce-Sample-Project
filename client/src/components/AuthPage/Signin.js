@@ -3,6 +3,7 @@ import { connect } from 'inferno-redux';
 import FormButton from '../FormButton/FormButton';
 import FormInput from '../FormInput/FormInput';
 import { signinUser } from '../../actions/authAction';
+import { Redirect } from 'inferno-router';
 
 class Signin extends Component {
   constructor() {
@@ -35,6 +36,10 @@ class Signin extends Component {
   };
 
   render() {
+    //Redirect user to the Home component if isAuth = true
+    if (this.props.auth.isAuthenticated) {
+      return <Redirect to="/home" />;
+    }
     return (
       <div>
         <h1>Signin Component</h1>

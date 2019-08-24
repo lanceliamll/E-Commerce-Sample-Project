@@ -5,6 +5,7 @@ import store from './store';
 import './App.css';
 import Signin from './components/AuthPage/Signin';
 import Signup from './components/AuthPage/Signup';
+import NavigationBar from './components/NavigationBar/NavigationBar';
 import { loadUser } from './actions/authAction';
 import setAuthToken from './helpers/setAuthToken';
 
@@ -24,6 +25,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
+          <NavigationBar />
           <Switch>
             <Route path="/signin" component={Signin} />
             <Route path="/signup" component={Signup} />

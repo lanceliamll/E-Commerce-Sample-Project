@@ -5,7 +5,8 @@ import {
   SIGNUP_FAILED,
   SIGNIN_USER,
   SIGNIN_FAILED,
-  USER_LOADED
+  USER_LOADED,
+  LOGOUT_USER
 } from './types';
 
 //LOAD THE AUTHENTICATED USER IF THERE IS TOKEN
@@ -28,7 +29,7 @@ export const loadUser = () => async dispatchEvent => {
   }
 };
 
-//REGISTER A USER
+//REGISTER USER
 export const signupUser = userData => async dispatchEvent => {
   try {
     const res = await axios.post(
@@ -40,6 +41,7 @@ export const signupUser = userData => async dispatchEvent => {
       type: SIGNUP_USER,
       payload: res.data
     });
+    dispatchEvent(loadUser());
   } catch (error) {
     dispatchEvent({
       type: SIGNUP_FAILED
@@ -47,7 +49,7 @@ export const signupUser = userData => async dispatchEvent => {
   }
 };
 
-//LOGIN A USER
+//LOGIN USER
 export const signinUser = userData => async dispatchEvent => {
   try {
     const res = await axios.post(
@@ -59,9 +61,17 @@ export const signinUser = userData => async dispatchEvent => {
       type: SIGNIN_USER,
       payload: res.data
     });
+    dispatchEvent(loadUser());
   } catch (error) {
     dispatchEvent({
       type: SIGNIN_FAILED
     });
   }
+};
+
+//LOGOUT USER
+export const logoutUser = () => async dispatchEvent => {
+  dispatchEvent({
+    type: LOGOUT_USER
+  });
 };

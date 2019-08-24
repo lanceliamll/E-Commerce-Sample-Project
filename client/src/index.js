@@ -2,6 +2,7 @@ import { render } from 'inferno';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { initDevTools } from "inferno-devtools";
 
 render(<App />, document.getElementById('root'));
 
@@ -9,3 +10,4 @@ render(<App />, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+initDevTools();

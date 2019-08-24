@@ -1,4 +1,11 @@
-import { SIGNUP_USER, SIGNUP_FAILED, USER_LOADED } from '../actions/types';
+import {
+  SIGNUP_USER,
+  SIGNUP_FAILED,
+  USER_LOADED,
+  SIGNIN_USER,
+  SIGNIN_FAILED,
+  LOGOUT_USER
+} from '../actions/types';
 
 const initialState = {
   token: localStorage.getItem('token'),
@@ -18,6 +25,7 @@ export default function(state = initialState, action) {
         loading: false
       };
     case SIGNUP_USER:
+    case SIGNIN_USER:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
@@ -26,6 +34,8 @@ export default function(state = initialState, action) {
         loading: false
       };
     case SIGNUP_FAILED:
+    case SIGNIN_FAILED:
+    case LOGOUT_USER:
       localStorage.removeItem('token', payload);
       return {
         ...state,
