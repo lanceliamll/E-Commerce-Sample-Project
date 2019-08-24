@@ -4,13 +4,14 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const authorized = require('../middleware/authorized');
 
 //TODO: Create input validation
 
 // # Functionality: GET the currently logged in user
 // # Route:         localhost:5000/api/users/
 // # isPrivate?:    true
-router.get('/', async (req, res) => {
+router.get('/', authorized, async (req, res) => {
   const { id } = req.user;
 
   try {
