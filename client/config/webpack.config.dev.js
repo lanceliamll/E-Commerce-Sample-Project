@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 const webpack = require('webpack');
 const PnpWebpackPlugin = require('pnp-webpack-plugin');
@@ -13,7 +11,6 @@ const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const ModuleNotFoundPlugin = require('inferno-dev-utils/ModuleNotFoundPlugin');
-const alias = require('rollup-plugin-alias');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -138,7 +135,6 @@ module.exports = {
     // for React Native Web.
     extensions: ['.mjs', '.web.js', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
-      inferno: __dirname + '/node_modules/inferno/dist/index.dev.esm.js',
       react: 'inferno-compat',
       'react-dom': 'inferno-compat',
       // These aliases makes sure all inferno imports and react aliases resolve into same script entry and no duplicates are made
@@ -160,9 +156,6 @@ module.exports = {
       // 'inferno-vnode-flags': path.resolve(require.resolve('inferno-vnode-flags/dist/index.dev.esm.js'))
     },
     plugins: [
-      alias({
-        inferno: __dirname + '/node_modules/inferno/dist/index.dev.esm.js'
-      }),
       // Adds support for installing with Plug'n'Play, leading to faster installs and adding
       // guards against forgotten dependencies and such.
       PnpWebpackPlugin,
